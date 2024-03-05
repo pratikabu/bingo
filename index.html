@@ -49,8 +49,12 @@
             });
         </script>
         <style>
+            body {
+                text-align: center;
+            }
             #board {
                 width: 560px;
+                display: inline-block;
             }
             #board .numbers {
                 padding: 5px;
@@ -68,6 +72,18 @@
             }
             #picker {
                 padding: 10px;
+                border: 1px solid gray;
+                border-radius: 5px;
+                cursor: pointer;
+                background-color: magenta;
+                font-size: 1.5em;
+                color: white;
+            }
+            #picker:hover {
+                background-color: blueviolet;
+            }
+            #picker:active {
+                background-color: lime;
             }
             #board .numbers.drawn {
                 background-color: red;
@@ -81,18 +97,33 @@
                 padding: 10px;
                 border: 1px solid gray;
                 display: inline-block;
-                border-radius: 10px;
-                font-size: 4em;
+                border-radius: 5px;
+                font-size: 1.5em;
+                min-width: 60px;
             }
             #log  span {
                 display: block;
             }
+            .noselect {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            #pickerDiv {
+                margin-bottom: 10px;
+            }
         </style>
     </head>
     <body>
-        <div id="board"></div>
-        <button id="picker">Pick New Number!</button>
-        <div id="newNumber">-</div>
-        <div id="log"></div>
+        <h1>Bingo!</h1>
+        <div id="pickerDiv" class="noselect">
+            <div id="newNumber">-</div>
+            <span id="picker">Pick!</span>
+        </div>
+        <div id="board" class="noselect"></div>
+        <div><h2>Picker logs</h2><div id="log"></div></div>
     </body>
 </html>
