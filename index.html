@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <title>Bingo</title>
+        <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+
+        <script>
+            function getRandomInt(max) {
+                return Math.floor(Math.random() * max);
+            }
+            function populateBoard() {
+                const board = $("#board");
+                for (let index = 1; index <= 100; index++) {
+                    board.append("<span class='numbers' id='number-" + index + "'>" + index + "</span>");
+                }
+            }
+            function isGameComplete() {
+                return 0 == document.querySelectorAll(".numbers:not(.drawn)").length;
+            }
+            function getNewNumber() {
+                const newNumbers = Array.from(document.querySelectorAll(".numbers:not(.drawn)")).map(d => d.innerHTML);
+                const newIndex = getRandomInt(newNumbers.length);
+                return newNumbers[newIndex];
+            }
+            function pickNewNumber() {
+                const newNumber = getNewNumber();
+                $("#newNumber").text(newNumber);
+                $("#number-" + newNumber).addClass("drawn");
+                logNumberPick(newNumber);
+            }
+            function addPickerEvent() {
+                $("#picker").on("click", function() {
+                    if(isGameComplete())
+                        return;
+                    setTimeout(function() { pickNewNumber() }, 5000);
+                });
+            }
+            function logNumberPick(number) {
+                const moveNum = $("#log .numberPickLog").length + 1;
+                const msg = moveNum + ": " + new Date().toLocaleString();
+                $("#log").prepend("<span class='numberPickLog'>" + msg + ", " + number + "</span>");
+                $("#number-" + number).prop("title", msg);
+            }
+
+            $( document ).ready(function() {
+                populateBoard();
+                addPickerEvent();
+            });
+        </script>
+        <style>
+            #board {
+                width: 400px;
+            }
+            #board .numbers {
+                padding: 5px;
+                border: 1px solid gray;
+                border-radius: 5px;
+                margin: 2px;
+                display: inline-block;
+                min-width: 24px;
+                text-align: center;
+                cursor: default;
+            }
+            #board .numbers:hover {
+                background-color: lightgray;
+            }
+            #picker {
+                padding: 10px;
+            }
+            #board .numbers.drawn {
+                background-color: red;
+                color: white;
+            }
+            #newNumber {
+                padding: 10px;
+                border: 1px solid gray;
+                display: inline-block;
+                border-radius: 10px;
+                font-size: 4em;
+            }
+            #log  span {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="board"></div>
+        <button id="picker">Pick New Number!</button>
+        <div id="newNumber">-</div>
+        <div id="log"></div>
+    </body>
+</html>
