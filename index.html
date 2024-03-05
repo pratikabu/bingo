@@ -22,9 +22,11 @@
                 return newNumbers[newIndex];
             }
             function pickNewNumber() {
+                $("#board .numbers.lastdrawn").removeClass("lastdrawn");
                 const newNumber = getNewNumber();
                 $("#newNumber").text(newNumber);
                 $("#number-" + newNumber).addClass("drawn");
+                $("#number-" + newNumber).addClass("lastdrawn");
                 logNumberPick(newNumber);
             }
             function addPickerEvent() {
@@ -48,7 +50,7 @@
         </script>
         <style>
             #board {
-                width: 400px;
+                width: 560px;
             }
             #board .numbers {
                 padding: 5px;
@@ -56,9 +58,10 @@
                 border-radius: 5px;
                 margin: 2px;
                 display: inline-block;
-                min-width: 24px;
+                min-width: 40px;
                 text-align: center;
                 cursor: default;
+                font-size: 1.5em;
             }
             #board .numbers:hover {
                 background-color: lightgray;
@@ -68,6 +71,10 @@
             }
             #board .numbers.drawn {
                 background-color: red;
+                color: white;
+            }
+            #board .numbers.lastdrawn {
+                background-color: rgb(170, 0, 255);
                 color: white;
             }
             #newNumber {
