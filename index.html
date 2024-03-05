@@ -10,8 +10,8 @@
             }
             function populateBoard() {
                 const board = $("#board");
-                for (let index = 1; index <= 100; index++) {
-                    board.append("<span class='numbers' id='number-" + index + "'>" + index + "</span>");
+                for (let index = 1; index <= 75; index++) {
+                    board.append("<li class='numbers' id='number-" + index + "'>" + index + "</li>");
                 }
             }
             function isGameComplete() {
@@ -55,22 +55,22 @@
                 text-align: center;
             }
             #board {
-                width: 560px;
+                /* width: 280px; */
                 display: inline-block;
+                column-gap: 2px;
+                column-count: 5;
+                list-style: none;
+                padding-left: 0;
             }
             #board .numbers {
                 padding: 5px;
                 border: 1px solid gray;
-                border-radius: 5px;
+                border-radius: 30px;
                 margin: 2px;
-                display: inline-block;
-                min-width: 40px;
+                min-width: 30px;
                 text-align: center;
                 cursor: default;
                 font-size: 1.5em;
-            }
-            #board .numbers:hover {
-                background-color: lightgray;
             }
             #picker {
                 padding: 10px;
@@ -139,7 +139,7 @@
             <div id="newNumber">-</div>
             <span id="picker">Pick!</span>
         </div>
-        <div id="board" class="noselect"></div>
+        <ul id="board" class="noselect"></ul>
         <div id="logDiv"><h2>Picker logs</h2>
             <table id="log">
                 <tr><th>Move#</th><th>Date/Time</th><th>Number</th></tr>
