@@ -37,10 +37,11 @@
                 });
             }
             function logNumberPick(number) {
-                const moveNum = $("#log .numberPickLog").length + 1;
-                const msg = moveNum + ": " + new Date().toLocaleString();
-                $("#log").prepend("<span class='numberPickLog'>" + msg + ", " + number + "</span>");
-                $("#number-" + number).prop("title", msg);
+                $("#logDiv").show();
+                const moveNum = $("#log tr").length;
+                const date = new Date().toLocaleString();
+                $("#log tr:first").after("<tr><td>" + moveNum + "</td><td>" + date + "</td><td>" + number + "</td></tr>");
+                $("#number-" + number).prop("title", moveNum + ": " + date);
             }
 
             $( document ).ready(function() {
@@ -101,8 +102,15 @@
                 font-size: 1.5em;
                 min-width: 60px;
             }
-            #log  span {
-                display: block;
+            #log {
+                display: inline-block;
+            }
+            #log, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            #log td {
+                padding: 5px;
             }
             .noselect {
                 -webkit-touch-callout: none;
@@ -115,6 +123,9 @@
             #pickerDiv {
                 margin-bottom: 10px;
             }
+            #logDiv {
+                display: none;
+            }
         </style>
     </head>
     <body>
@@ -124,6 +135,10 @@
             <span id="picker">Pick!</span>
         </div>
         <div id="board" class="noselect"></div>
-        <div><h2>Picker logs</h2><div id="log"></div></div>
+        <div id="logDiv"><h2>Picker logs</h2>
+            <table id="log">
+                <tr><th>Move#</th><th>Date/Time</th><th>Number</th></tr>
+            </table>
+        </div>
     </body>
 </html>
