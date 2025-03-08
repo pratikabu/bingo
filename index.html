@@ -2,6 +2,7 @@
     <head>
         <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
         <title>Bingo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
 
         <script>
@@ -111,15 +112,15 @@
                 color: white;
             }
             .board .numbers.lastdrawn {
-                background-color: rgb(170, 0, 255);
-                color: white;
+                background-color: #9fff00;
+                color: black;
             }
             #newNumber {
                 padding: 10px;
                 border: 1px solid gray;
                 display: inline-block;
                 border-radius: 5px;
-                font-size: 1.5em;
+                font-size: 24px;
                 min-width: 60px;
             }
             #log {
@@ -151,11 +152,52 @@
                 margin: 10px;
                 border: 1px solid gray;
                 border-radius: 10px;
+                position: relative;
             }
             .letterSpan {
-                display: block;
-                font-size: 2em;
+                display: inline;
+                font-size: 30px;
+                color: #ffffff;
                 font-weight: bold;
+                position: absolute;
+                top: -15px;
+                left: -15px;
+                border: 1px solid purple;
+                border-radius: 30px;
+                min-width: 35px;
+                background-color: #9a5fdc;
+            }
+
+            .boardContainer:has(.numbers.lastdrawn) {
+                background-color: #ddffe2;
+            }
+
+            @media screen and (max-width: 420px) {
+                .board {
+                    padding: 0;
+                    margin: 0px;
+                }
+                .board .numbers {
+                    padding: 2px;
+                    border: 1px solid gray;
+                    border-radius: 20px;
+                    margin: 1px;
+                    min-width: 20px;
+                    font-size: 16px;
+                }
+
+                .boardContainer {
+                    padding: 5px;
+                    margin: 5px;
+                }
+
+                .letterSpan {
+                    font-size: 17px;
+                    border-radius: 20px;
+                    min-width: 20px;
+                    top: -10px;
+                    left: -10px;
+                }
             }
         </style>
     </head>
