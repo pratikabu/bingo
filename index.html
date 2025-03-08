@@ -41,8 +41,11 @@
                 const newIndex = getRandomInt(newNumbers.length);
                 return newNumbers[newIndex];
             }
-            function pickNewNumber() {
+            function clearLastDrawn() {
                 $(".board .numbers.lastdrawn").removeClass("lastdrawn");
+            }
+            function pickNewNumber() {
+                clearLastDrawn();
                 const newNumber = getNewNumber();
                 const bingoNum = getNumberGroup(newNumber) + ' - ' + newNumber;
                 $("#newNumber").text(bingoNum);
@@ -52,8 +55,10 @@
             }
             function addPickerEvent() {
                 $("#picker").on("click", function() {
-                    if(isGameComplete())
+                    if(isGameComplete()) {
+                        clearLastDrawn();
                         return;
+                    }
                     setTimeout(function() { pickNewNumber() }, 0);
                 });
             }
@@ -108,8 +113,8 @@
                 background-color: lime;
             }
             .board .numbers.drawn {
-                background-color: red;
-                color: white;
+                background-color: #bfbfbf;
+                color: black;
             }
             .board .numbers.lastdrawn {
                 background-color: #9fff00;
