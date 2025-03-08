@@ -203,6 +203,24 @@
                     left: -10px;
                 }
             }
+
+            @media (prefers-color-scheme: dark) {
+                body, html {
+                    background: #22272e !important;
+                }
+
+                body {
+                    color: #b8bcbf;
+                }
+                
+                #log th, #log td {
+                    border-color: #b8bcbf;
+                }
+
+                .boardContainer:has(.numbers.lastdrawn) {
+                    background-color: #435546;
+                }
+            }
         </style>
     </head>
     <body>
