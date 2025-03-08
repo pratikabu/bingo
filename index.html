@@ -8,6 +8,16 @@
             function getRandomInt(max) {
                 return Math.floor(Math.random() * max);
             }
+
+            function getNumberGroup(number) {
+                let group = 'O';
+                if(number <= 15) group = 'B';
+                else if(number <= 30) group = 'I';
+                else if(number <= 45) group = 'N';
+                else if(number <= 60) group = 'G';
+                return group;
+            }
+
             function populateBoard() {
                 const board = $("#board");
                 for (let index = 1; index <= 75; index++) {
@@ -25,10 +35,11 @@
             function pickNewNumber() {
                 $("#board .numbers.lastdrawn").removeClass("lastdrawn");
                 const newNumber = getNewNumber();
-                $("#newNumber").text(newNumber);
+                const bingoNum = getNumberGroup(newNumber) + ' - ' + newNumber;
+                $("#newNumber").text(bingoNum);
                 $("#number-" + newNumber).addClass("drawn");
                 $("#number-" + newNumber).addClass("lastdrawn");
-                logNumberPick(newNumber);
+                logNumberPick(bingoNum);
             }
             function addPickerEvent() {
                 $("#picker").on("click", function() {
