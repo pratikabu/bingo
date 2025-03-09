@@ -101,9 +101,10 @@
                 border: 1px solid gray;
                 border-radius: 5px;
                 cursor: pointer;
-                background-color: magenta;
+                background-color: #005bff;
                 font-size: 24px;
                 color: white;
+                font-family: inherit;
             }
             #picker:hover {
                 background-color: blueviolet;
@@ -145,7 +146,7 @@
                 user-select: none;
             }
             #pickerDiv {
-                margin-bottom: 10px;
+                margin: 10px;
             }
             #logDiv {
                 display: none;
@@ -204,6 +205,19 @@
                 }
             }
 
+            a:link {
+                color: #15C;
+                text-decoration: none;
+            }
+            a:visited {
+                color: #15C;
+                text-decoration: none;
+            }
+            a:hover {
+                color: #9B2D2D;
+                text-decoration: underline;
+            }
+
             @media (prefers-color-scheme: dark) {
                 body, html {
                     background: #22272e !important;
@@ -220,14 +234,21 @@
                 .boardContainer:has(.numbers.lastdrawn) {
                     background-color: #435546;
                 }
+
+                a.menuLink:visited, a.menuLink:link, a:visited, a:link {
+                    color: #e8de57;
+                }
+
+                a.menuLink:hover, a:hover {
+                    color: #00ff2d;
+                }
             }
         </style>
     </head>
     <body>
-        <h1>Bingo!</h1>
-        <div id="pickerDiv" class="noselect">
-            <div id="newNumber">-</div>
-            <span id="picker">Pick!</span>
+        <div id="pickerDiv">
+            <div id="newNumber" class="noselect">-</div>
+            <button id="picker">Draw!</button>
         </div>
         <div class="boardContainer"><span class="letterSpan">B</span><ul id="b-board" class="board noselect"></ul></div>
         <div class="boardContainer"><span class="letterSpan">I</span><ul id="i-board" class="board noselect"></ul></div>
@@ -238,6 +259,10 @@
             <table id="log">
                 <tr><th>Move#</th><th>Date/Time</th><th>Number</th></tr>
             </table>
+        </div>
+        <h1>Bingo!</h1>
+        <div class="footer">
+            <span><a href="https://github.com/pratikabu/bingo" target="_blank">Open Sourced</a> Bingo caller board.</span>
         </div>
     </body>
 </html>
